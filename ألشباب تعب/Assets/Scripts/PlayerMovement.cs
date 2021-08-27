@@ -4,55 +4,46 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float pcSpeed;
 
-    // Player variables
-    public float playerSpeed = 7f;
+    public LayerMask canJumpLayer;
 
+    public float jumpForce;
 
-    // Private refrences
-    Rigidbody2D rb;
-    [SerializeField] Vector2 moveDirection;
-    float Horizontal;
-    float Vertical;
-    
+    private Rigidbody2D rb;
 
-    #region Set as Singleton
+    private Vector2 myPos;
+    private Camera cam;
+    public float cameraSmoothness;
 
-    public static PlayerMovement Instance;
-
-    public void Awake()
+    void Start()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
+        rb = this.GetComponent<Rigidbody2D>();
+        cam = Camera.main;
     }
 
-    #endregion
-
-    public void Start()
+    void FixedUpdate()
     {
-        #region Set the rigidbody
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
-        #endregion
-    }
-    private void FixedUpdate()
-    {
-        MovePlayer();
+        PCController();
+        CameraFollow();
     }
 
-    public void MovePlayer()
+    private void PCController()
     {
-        Horizontal = Input.GetAxis("Horizontal");
-        Vertical = Input.GetAxis("Vertical");
-        moveDirection = new Vector2(Horizontal * playerSpeed, Vertical * playerSpeed);
-        
+        float hor = Input.GetAxis("Horizontal");
+        float ver = Input.GetAxis("Vertical");
 
-        //Move the player
-        rb.velocity = moveDirection;
+        Vector3 move = new Vector2(hor * Time.deltaTime * pcSpeed, ver * Time.deltaTime * pcSpeed);
+
+        rb.velocity = move;
+
+        //transform.position += move;
     }
 
+    private void CameraFollow()
+    {
+        myPos = new Vector3(transform.position.x, transform.position.y);
+        cam.transform.position = Vector3.Lerp(cam.transform.position, myPos, cameraSmoothness * Time.deltaTime);
+        cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
+    }
 }
