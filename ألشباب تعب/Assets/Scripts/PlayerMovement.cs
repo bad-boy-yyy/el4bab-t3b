@@ -25,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         PCController();
+    }
+    private void LateUpdate()
+    {
         CameraFollow();
     }
 
@@ -36,8 +39,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector2(hor * Time.deltaTime * pcSpeed, ver * Time.deltaTime * pcSpeed);
 
         rb.velocity = move;
-
-        //transform.position += move;
     }
 
     private void CameraFollow()
