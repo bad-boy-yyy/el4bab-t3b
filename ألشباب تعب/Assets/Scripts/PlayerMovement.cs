@@ -26,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
     {
         PCController();
     }
+
+    void Update()
+    {
+        PlayerLook();
+    }
+
     private void LateUpdate()
     {
         CameraFollow();
@@ -39,6 +45,19 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = new Vector2(hor * Time.deltaTime * pcSpeed, ver * Time.deltaTime * pcSpeed);
 
         rb.velocity = move;
+    }
+
+    private void PlayerLook()
+    {
+        Vector2 mousePos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.z));
+
+        Vector2 offset = mousePos - (Vector2)transform.position;
+
+        offset.Normalize();
+
+        float rotationz = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(0, 0, rotationz);
     }
 
     private void CameraFollow()
