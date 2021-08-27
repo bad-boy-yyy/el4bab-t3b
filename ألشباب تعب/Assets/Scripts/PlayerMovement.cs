@@ -5,55 +5,54 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-    public float pcSpeed;
-    [HideInInspector]
-    public float MBSpeed;
+    // Player variables
+    public float playerSpeed = 7f;
 
-    public LayerMask canJumpLayer;
 
-    private bool moveRight;
-    private bool moveLeft;
+    // Private refrences
+    Rigidbody2D rb;
+    [SerializeField] Vector2 moveDirection;
+    float Horizontal;
+    float Vertical;
+    
 
-    public float jumpForce;
-    [HideInInspector]
-    public bool infiniteJump;
-    [HideInInspector]
-    public int jumpCount = 2;
+    #region Set as Singleton
 
-    private Rigidbody2D rb;
+    public static PlayerMovement Instance;
 
-    private Vector2 myPos;
-    private Camera cam;
-    public float cameraSmoothness;
-
-    void Start()
+    public void Awake()
     {
-        rb = this.GetComponent<Rigidbody2D>();
-        cam = Camera.main;
+        if(Instance == null)
+        {
+            Instance = this;
+        }
     }
 
-    void FixedUpdate()
+    #endregion
+
+    public void Start()
     {
-        PCController();
-        CameraFollow();
+        #region Set the rigidbody
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+        #endregion
+    }
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
 
-    private void PCController()
+    public void MovePlayer()
     {
-        float hor = Input.GetAxis("Horizontal");
-        float ver = Input.GetAxis("Vertical");
+        Horizontal = Input.GetAxis("Horizontal");
+        Vertical = Input.GetAxis("Vertical");
+        moveDirection = new Vector2(Horizontal * playerSpeed, Vertical * playerSpeed);
+        
 
-        Vector3 move = new Vector2(hor * Time.deltaTime * pcSpeed, ver * Time.deltaTime * pcSpeed);
-
-        rb.velocity = move;
-
-        //transform.position += move;
+        //Move the player
+        rb.velocity = moveDirection;
     }
 
-    private void CameraFollow()
-    {
-        myPos = new Vector3(transform.position.x, transform.position.y);
-        cam.transform.position = Vector3.Lerp(cam.transform.position, myPos, cameraSmoothness * Time.deltaTime);
-        cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
-    }
 }
