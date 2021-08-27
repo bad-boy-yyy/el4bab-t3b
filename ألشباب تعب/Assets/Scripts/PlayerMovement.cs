@@ -26,20 +26,6 @@ public class PlayerMovement : MonoBehaviour
     {
         PCController();
         CameraFollow();
-        PlayerLook();
-    }
-
-    private void PlayerLook()
-    {
-        Vector2 mousePos =  cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.transform.position.z));
-
-        Vector2 offset = mousePos - (Vector2)transform.position;
-
-        offset.Normalize();
-
-        float rotationz = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0, 0, rotationz);
     }
 
     private void PCController()
