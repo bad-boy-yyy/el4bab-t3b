@@ -64,7 +64,7 @@ public class ShopScript : MonoBehaviour
             {
                 //pressText.SetActive(false);
 
-                shopPanel.SetActive(true);
+                BackButton();
             }
         }
 
@@ -105,6 +105,8 @@ public class ShopScript : MonoBehaviour
     public void BackButton()
     {
         shopPanel.SetActive(false);
+
+        ResetButton();
     }
 
     #region UpgradesFunctions
