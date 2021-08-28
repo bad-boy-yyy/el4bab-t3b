@@ -9,7 +9,8 @@ public class GunSystem : MonoBehaviour
     public string GunName;
     public Image GunImage;
     public Transform gunBarrel;
-    public float firerate, spread, recoil, ammo, maxAmmo, reloadTime;
+    public float firerate,bulletSpeed, spread, recoil, ammo, maxAmmo, reloadTime;
+    public int damage;
     public GameObject bulletProjectile;
     public bool isAutomatic;
 
@@ -57,11 +58,15 @@ public class GunSystem : MonoBehaviour
         if (ableToShoot)
         {
             ableToShoot = false;
-            // GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, Quaternion.identity);
+
+            GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, gunBarrel.rotation);
+            muzzleFlash.Play();
+            
+            bullet.GetComponent<BulletScript>().bulletDamage = damage;
+            bullet.GetComponent<BulletScript>().bulletSpeed = bulletSpeed * 10;
+            
+            
             Debug.Log("Pew Pew!");
-
-
-
 
             Invoke("ResetShot", firerate);
         }

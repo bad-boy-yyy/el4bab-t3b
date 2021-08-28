@@ -13,22 +13,24 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
 
     private Vector2 myPos;
-    private Camera cam;
+    public Camera cam;
+    public Transform camPivot;
+    public Transform cameraFollow;
     public float cameraSmoothness;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
-        cam = Camera.main;
+        
     }
 
     void FixedUpdate()
     {
-        PCController();
     }
 
     void Update()
     {
+        PCController();
         PlayerLook();
     }
 
@@ -42,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector2(hor * Time.deltaTime * pcSpeed, ver * Time.deltaTime * pcSpeed);
-
-        rb.velocity = move;
+        Vector3 move = new Vector2(hor * pcSpeed, ver * pcSpeed);
+        
+        rb.velocity = move * Time.deltaTime;
     }
 
     private void PlayerLook()
@@ -62,8 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void CameraFollow()
     {
-        myPos = new Vector3(transform.position.x, transform.position.y);
-        cam.transform.position = Vector3.Lerp(cam.transform.position, myPos, cameraSmoothness * Time.deltaTime);
-        cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
+       
+        cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3(cameraFollow.position.x, cameraFollow.position.y,-10), cameraSmoothness * Time.deltaTime);
     }
 }
