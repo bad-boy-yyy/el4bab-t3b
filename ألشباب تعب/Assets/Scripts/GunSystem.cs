@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EZCameraShake; 
 
 public class GunSystem : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class GunSystem : MonoBehaviour
     public GameObject bulletProjectile;
     public bool isAutomatic;
 
-
+    public CameraShaker shaker;
 
     // Graphics
     public ParticleSystem muzzleFlash;
@@ -58,6 +59,8 @@ public class GunSystem : MonoBehaviour
         if (ableToShoot)
         {
             ableToShoot = false;
+
+            CameraShaker.Instance.ShakeOnce(1f, 2,   .1f, 0.5f);
 
             GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, gunBarrel.rotation);
             muzzleFlash.Play();

@@ -54,6 +54,10 @@ public class ShopScript : MonoBehaviour
         {
             pressText.SetActive(false);
             canOpen = false;
+            if(shopPanel.activeSelf)
+            {
+                shopPanel.SetActive(false);
+            }
         }
 
 
