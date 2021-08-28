@@ -15113,7 +15113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d4b74a6a8590014586f65233480753b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pcSpeed: 500
+  pcSpeed: 10
   canJumpLayer:
     serializedVersion: 2
     m_Bits: 0

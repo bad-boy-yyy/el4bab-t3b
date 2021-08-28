@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+       
     }
 
     void Update()
@@ -45,8 +46,10 @@ public class PlayerMovement : MonoBehaviour
         float ver = Input.GetAxis("Vertical");
 
         Vector3 move = new Vector2(hor * pcSpeed, ver * pcSpeed);
-        
-        rb.velocity = move * Time.deltaTime;
+
+        transform.position += move * Time.deltaTime;
+
+        //rb.velocity = move * Time.deltaTime;
     }
 
     private void PlayerLook()
@@ -64,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void CameraFollow()
     {
-       
+        //cam.transform.position = Vector3.Lerp(cam.transform.position, transform.position, 8 * Time.deltaTime);
+        //cam.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, -10);
         cam.transform.position = Vector3.Lerp(cam.transform.position, new Vector3(cameraFollow.position.x, cameraFollow.position.y,-10), cameraSmoothness * Time.deltaTime);
     }
 }
