@@ -64,13 +64,13 @@ public class ShopScript : MonoBehaviour
             {
                 //pressText.SetActive(false);
 
-                BackButton();
+                shopPanel.SetActive(true);
             }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            shopPanel.SetActive(false);
+            BackButton();
         }
     }
 
