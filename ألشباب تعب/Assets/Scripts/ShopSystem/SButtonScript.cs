@@ -14,7 +14,11 @@ public class SButtonScript : MonoBehaviour
 
     private ShopScript shopScript;
 
-    public int index;
+    public string functionName;
+
+    public bool justOnce;
+
+    [HideInInspector]public bool sold;
 
     private void Start()
     {
@@ -25,28 +29,39 @@ public class SButtonScript : MonoBehaviour
 
     private void Update()
     {
-        int moneyDiff = shopScript.Money - shopScript.cost;
+        if (!sold)
+        {
+            int moneyDiff = shopScript.Money - shopScript.cost;
 
-        if (checkedBool)
-        {
-            GetComponent<Image>().color = Color.gray;
-        }
-        else
-        {
-            GetComponent<Image>().color = Color.green;
-        }
-
-        if (moneyDiff >= price)
-        {
-            thisButton.enabled = true;
-        }
-        else
-        {
-            if (!checkedBool)
+            if (checkedBool)
             {
-                thisButton.enabled = false;
-                GetComponent<Image>().color = Color.red;
+                GetComponent<Image>().color = Color.gray;
             }
+            else
+            {
+                GetComponent<Image>().color = Color.green;
+            }
+
+            if (moneyDiff >= price)
+            {
+                thisButton.enabled = true;
+            }
+            else
+            {
+                if (!checkedBool)
+                {
+                    thisButton.enabled = false;
+                    GetComponent<Image>().color = Color.red;
+                }
+            }
+        }
+        else
+        {
+            thisButton.enabled = false;
+
+            this.GetComponentInChildren<Text>().text = "SOLD";
+            GetComponent<Image>().color = Color.clear;
+            this.GetComponentInChildren<Text>().color = Color.red;
         }
     }
 
@@ -69,7 +84,18 @@ public class SButtonScript : MonoBehaviour
         //Call the buying Function...
 
         if (checkedBool)
-        shopScript.MainVoid(index);
+        {
+            if (!justOnce)
+            {
+                shopScript.MainVoid(functionName);
+            }
+            else
+            {
+                shopScript.MainVoid(functionName);
+
+                sold = true;
+            }
+        }
     }
 
 }
