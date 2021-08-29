@@ -54,7 +54,7 @@ public class ShopScript : MonoBehaviour
         {
             pressText.SetActive(false);
             canOpen = false;
-            if(shopPanel.activeSelf)
+            if (shopPanel.activeSelf)
             {
                 shopPanel.SetActive(false);
             }
@@ -90,6 +90,7 @@ public class ShopScript : MonoBehaviour
         {
             UpgradeButtons[i].GetComponent<SButtonScript>().BuyFunction();
 
+            if (!UpgradeButtons[i].GetComponent<SButtonScript>().justOnce)
             UpgradeButtons[i].GetComponent<SButtonScript>().checkedBool = false;
         }
     }
@@ -102,6 +103,7 @@ public class ShopScript : MonoBehaviour
 
         for (int i = 0; i < UpgradeButtons.Length; i++)
         {
+            if (!UpgradeButtons[i].GetComponent<SButtonScript>().sold)
             UpgradeButtons[i].GetComponent<SButtonScript>().checkedBool = false;
         }
     }
@@ -115,10 +117,13 @@ public class ShopScript : MonoBehaviour
 
     #region UpgradesFunctions
 
-    public void MainVoid(int index)
+    public void MainVoid(string name)
     {
+
         //apply the function that we have chosen by the button index...
 
+        #region Nothing
+        /*
         int rand = index;
 
         switch (index)
@@ -154,11 +159,60 @@ public class ShopScript : MonoBehaviour
             case 7:
                 Bullet50();
                 break;
-        }
+         */
+        #endregion
+
+        Invoke(name, 0);
     }
 
     //we will put the commands in the below functions..
 
+    #region Weapons
+    private void AK()
+    {
+        Debug.Log("AK");
+    }
+
+    private void GLOCK()
+    {
+        Debug.Log("GLOCK");
+    }
+
+    private void DEAGLE()
+    {
+        Debug.Log("DEAGLE");
+    }
+
+    private void M4()
+    {
+        Debug.Log("M4");
+    }
+
+    private void K90()
+    {
+        Debug.Log("K90");
+    }
+
+
+    private void SCAR()
+    {
+        Debug.Log("SCAR");
+    }
+
+
+    private void AWP()
+    {
+        Debug.Log("AWP");
+    }
+
+    private void VECTOR()
+    {
+        Debug.Log("VECTOR");
+    }
+
+    #endregion
+
+    #region Upgrades
     private void Drink()
     {
         Debug.Log("Drink");
@@ -179,14 +233,29 @@ public class ShopScript : MonoBehaviour
         Debug.Log("IncreaseHealth");
     }
 
+    private void Armor()
+    {
+        Debug.Log("Armor");
+    }
+
+    private void Flying()
+    {
+        Debug.Log("Flying");
+    }
+
     private void DamageIncrease()
     {
         Debug.Log("DamageIncrease");
     }
 
-    private void Bullet10()
+    private void FireRate()
     {
-        Debug.Log("Bullet10");
+        Debug.Log("FireRate");
+    }
+
+    private void Bullet50()
+    {
+        Debug.Log("Bullet50");
     }
 
     private void Bullet20()
@@ -194,9 +263,34 @@ public class ShopScript : MonoBehaviour
         Debug.Log("Bullet20");
     }
 
-    private void Bullet50()
+    private void Bullet10()
     {
-        Debug.Log("Bullet50");
+        Debug.Log("Bullet10");
     }
+
+    private void ReloadTime()
+    {
+        Debug.Log("ReloadTime");
+    }
+    #endregion
+
+    #region Characters
+    private void Character1()
+    {
+        Debug.Log("Character1");
+    }
+    private void Character2()
+    {
+        Debug.Log("Character2");
+    }
+    private void Character3()
+    {
+        Debug.Log("Character3");
+    }
+    private void Character4()
+    {
+        Debug.Log("Character4");
+    }
+    #endregion
     #endregion
 }
