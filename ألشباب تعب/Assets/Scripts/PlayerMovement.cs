@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpForce;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private Vector2 myPos;
     public Camera cam;
@@ -18,6 +18,17 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraFollow;
     public float cameraSmoothness;
 
+    Vector2 moveDirection;
+
+    public static PlayerMovement Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -45,11 +56,11 @@ public class PlayerMovement : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
 
-        Vector3 move = new Vector2(hor * pcSpeed, ver * pcSpeed);
+        
 
-        transform.position += move * Time.deltaTime;
+        moveDirection = (new Vector2(hor, ver));
 
-        //rb.velocity = move * Time.deltaTime;
+        rb.velocity = (moveDirection * pcSpeed);
     }
 
     private void PlayerLook()

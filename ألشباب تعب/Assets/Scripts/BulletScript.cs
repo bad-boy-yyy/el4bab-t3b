@@ -21,6 +21,7 @@ public class BulletScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject impact = Instantiate(bulletImpact, transform.position, Quaternion.identity);
+        Destroy(impact, 1f);
         Debug.Log("sad");
         Destroy(gameObject);
     }

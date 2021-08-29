@@ -10,7 +10,7 @@ public class GunSystem : MonoBehaviour
     public string GunName;
     public Image GunImage;
     public Transform gunBarrel;
-    public float firerate,bulletSpeed, spread, recoil, ammo, maxAmmo, reloadTime;
+    public float firerate,bulletSpeed, spread, recoil, ammo, maxAmmo, reloadTime,shakeRoughness,shakeMagnitude;
     public int damage;
     public GameObject bulletProjectile;
     public bool isAutomatic;
@@ -59,10 +59,11 @@ public class GunSystem : MonoBehaviour
         if (ableToShoot)
         {
             ableToShoot = false;
-
-            CameraShaker.Instance.ShakeOnce(1f, 2,   .1f, 0.5f);
-
+            CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, .1f, 1f);
+            PlayerMovement.Instance.rb.AddForce(-gunBarrel.transform.up * recoil, ForceMode2D.Impulse);
             GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, gunBarrel.rotation);
+
+            bullet.transform.Rotate (new Vector3(0, 0, Random.Range(-spread, spread)));
             muzzleFlash.Play();
             
             bullet.GetComponent<BulletScript>().bulletDamage = damage;
