@@ -15,12 +15,15 @@ public class GunSystem : MonoBehaviour
     public GameObject bulletProjectile;
     public bool isAutomatic;
 
-    public CameraShaker shaker;
+
+
+    public Text ammoText;
 
     // Graphics
     public ParticleSystem muzzleFlash;
 
     // Private refrences
+    bool isReloading;
     bool ableToShoot;
 
 
@@ -32,11 +35,23 @@ public class GunSystem : MonoBehaviour
 
     public void Update()
     {
+
+        UIControl();
         MyInput();
+    }
+
+    public void UIControl()
+    {
+        ammoText.text = ammo.ToString() + "/" + maxAmmo.ToString();
     }
 
     public void MyInput()
     {
+        if(ammo <1 && !isReloading)
+        {
+            Reload();
+        }
+
         if (isAutomatic)
         {
             if (Input.GetMouseButton(0))
@@ -56,9 +71,10 @@ public class GunSystem : MonoBehaviour
     }
     public void Shoot()
     {
-        if (ableToShoot)
+        if (ableToShoot && !isReloading && ammo > 0)
         {
             ableToShoot = false;
+            ammo -= 1f;
             CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, .1f, 1f);
             //GetComponentInParent.Instance..AddForce(-gunBarrel.transform.up * recoil, ForceMode2D.Impulse);
             GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, gunBarrel.rotation);
@@ -78,6 +94,16 @@ public class GunSystem : MonoBehaviour
     public void ResetShot()
     {
         ableToShoot = true;
+    }
+    public void Reload()
+    {
+        isReloading = true;
+        Invoke("EndReload", reloadTime);
+    }
+    public void EndReload()
+    {
+        isReloading = false;
+        ammo = maxAmmo;
     }
 
 
