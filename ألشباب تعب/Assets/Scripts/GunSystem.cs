@@ -60,7 +60,7 @@ public class GunSystem : MonoBehaviour
         {
             ableToShoot = false;
             CameraShaker.Instance.ShakeOnce(shakeMagnitude, shakeRoughness, .1f, 1f);
-            PlayerMovement.Instance.rb.AddForce(-gunBarrel.transform.up * recoil, ForceMode2D.Impulse);
+            //GetComponentInParent.Instance..AddForce(-gunBarrel.transform.up * recoil, ForceMode2D.Impulse);
             GameObject bullet = Instantiate(bulletProjectile, gunBarrel.position, gunBarrel.rotation);
 
             bullet.transform.Rotate (new Vector3(0, 0, Random.Range(-spread, spread)));
