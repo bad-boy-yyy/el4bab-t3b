@@ -2177,10 +2177,10 @@ MonoBehaviour:
   weaponsButton: {fileID: 1588528148}
   upgradesButton: {fileID: 1263646619}
   charactersButton: {fileID: 137015386}
-  UPanel1: {fileID: 0}
-  UPanel2: {fileID: 0}
-  UPanel1Pos: {fileID: 0}
-  UPanel2Pos: {fileID: 0}
+  UPanel1: {fileID: 706770956}
+  UPanel2: {fileID: 1540324559}
+  UPanel1Pos: {fileID: 1579788153}
+  UPanel2Pos: {fileID: 1050674519}
   thirdPos: {fileID: 1645298830}
   smoothness: 20
   UNxtButton: {fileID: 227985747}
