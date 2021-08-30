@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("IncreaseTime", 15, 15);
+        InvokeRepeating("IncreaseTime", 30, 30);
     }
 
     void Update()

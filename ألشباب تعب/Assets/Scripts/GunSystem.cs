@@ -84,6 +84,7 @@ public class GunSystem : MonoBehaviour
             
             bullet.GetComponent<BulletScript>().bulletDamage = damage;
             bullet.GetComponent<BulletScript>().bulletSpeed = bulletSpeed * 10;
+            PlayerSystem.Instance.AddRecoil(recoil);
             
             
             Debug.Log("Pew Pew!");

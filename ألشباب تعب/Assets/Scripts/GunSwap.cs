@@ -7,8 +7,18 @@ public class GunSwap : MonoBehaviour
     
     public int currentWeapon;
     public Transform[] weapons;
-    
+
+    public static GunSwap Instance;
+
     int selectedGun;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     public void Start()
     {
@@ -100,7 +110,7 @@ public class GunSwap : MonoBehaviour
                 weapons[i].gameObject.SetActive(true);
             else
                 weapons[i].gameObject.SetActive(false);
-        }
+        } 
 
 
     }
