@@ -25,6 +25,12 @@ public class ShopScript : MonoBehaviour
 
     public GameObject[] UpgradeButtons;
 
+    public GameObject[] IWeapons;
+    public GameObject[] IHolders;
+
+    public int holderIndex = -1;
+    public int weaponIndex = 0;
+
     void Start()
     {
         player = GameObject.Find("Player");
@@ -88,6 +94,7 @@ public class ShopScript : MonoBehaviour
 
         for (int i = 0; i < UpgradeButtons.Length; i++)
         {
+            if(!UpgradeButtons[i].GetComponent<SButtonScript>().sold)
             UpgradeButtons[i].GetComponent<SButtonScript>().BuyFunction();
 
             if (!UpgradeButtons[i].GetComponent<SButtonScript>().justOnce)
@@ -171,43 +178,104 @@ public class ShopScript : MonoBehaviour
     private void AK()
     {
         Debug.Log("AK");
-    }
 
-    private void GLOCK()
-    {
-        Debug.Log("GLOCK");
+        WeaponBuyFunction(0);
     }
 
     private void DEAGLE()
     {
         Debug.Log("DEAGLE");
+
+
+        WeaponBuyFunction(1);
     }
 
-    private void M4()
+    private void GLOCK()
     {
-        Debug.Log("M4");
+        Debug.Log("GLOCK");
+
+        WeaponBuyFunction(2);
+    }
+
+    private void AWP()
+    {
+        Debug.Log("AWP");
+
+        WeaponBuyFunction(3);
     }
 
     private void K90()
     {
         Debug.Log("K90");
-    }
 
-
-    private void SCAR()
-    {
-        Debug.Log("SCAR");
-    }
-
-
-    private void AWP()
-    {
-        Debug.Log("AWP");
+        WeaponBuyFunction(4);
     }
 
     private void VECTOR()
     {
         Debug.Log("VECTOR");
+
+        WeaponBuyFunction(5);
+    }
+
+    private void HUNTINGRIFLE()
+    {
+        Debug.Log("HUNTINGRIFLE");
+
+        WeaponBuyFunction(6);
+    }
+
+
+    private void REVOLVER()
+    {
+        Debug.Log("REVOLVER");
+
+        WeaponBuyFunction(7);
+    }
+
+    private void AUTOPISTOL()
+    {
+        Debug.Log("AUTOPISTOL");
+
+        WeaponBuyFunction(8);
+    }
+
+    private void WeaponBuyFunction(int WIndex)
+    {
+        for (int i = 0; i < IHolders.Length; i++)
+        {
+            if (!IHolders[holderIndex].GetComponent<HolderScript>().holding)
+            {
+                IWeapons[WIndex].SetActive(true);
+
+                IWeapons[WIndex].GetComponent<RectTransform>().position = IHolders[holderIndex].GetComponent<RectTransform>().position;
+
+                IWeapons[WIndex].transform.SetParent(IHolders[holderIndex].transform);
+
+                IHolders[holderIndex].GetComponent<HolderScript>().holding = true;
+
+                IWeapons[WIndex].GetComponent<IButtonScript>().lastHolder = IHolders[holderIndex];
+
+                holderIndex++;
+
+                break;
+            }
+            if (IHolders[holderIndex].GetComponent<HolderScript>().holding)
+            {
+                if (holderIndex <= 7)
+                {
+                    holderIndex++;
+                }
+                else if (holderIndex >= 8)
+                {
+                    holderIndex = 0;
+
+                    WeaponBuyFunction(WIndex);
+
+                    break;
+                }
+            }
+        }
     }
 
     #endregion

@@ -36,56 +36,56 @@ public class GunSwap : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Alpha1))
                 {
               
-                    changeWeapon(0);
+                    //changeWeapon(0);
                    
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
                     
-                    changeWeapon (1);
+                   // changeWeapon (1);
                     
                 }
 
                 if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
                    
-                    changeWeapon (2);
+                   // changeWeapon (2);
                   
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
                    
-                    changeWeapon (3);
+                  //  changeWeapon (3);
                     
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha5))
                 {
 
-                    changeWeapon (4);
+                 //   changeWeapon (4);
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha6))
                 {
                     
-                    changeWeapon (5);
+                 //   changeWeapon (5);
                     
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha7))
                 {
                     
-                    changeWeapon (6);
+                  //  changeWeapon (6);
                     
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha8))
                 {
                     
-                    changeWeapon (7);
+                  //  changeWeapon (7);
                     
                 }
                 if (Input.GetKeyDown(KeyCode.Alpha9))
                 {
                     
-                    changeWeapon (8);
+                   // changeWeapon (8);
                     
                 }  
               

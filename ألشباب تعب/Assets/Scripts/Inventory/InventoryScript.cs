@@ -5,11 +5,29 @@ using UnityEngine;
 public class InventoryScript : MonoBehaviour
 {
 
-    public GameObject InventoryPanel;
+    public GameObject inventoryPanel;
 
-    public void InventoryButton()
+    public bool inv;
+    void Update()
     {
-        InventoryPanel.SetActive(true);
+        if (inv)
+        {
+            inventoryPanel.SetActive(true);
+        }else {
+            inventoryPanel.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (inv)
+            {
+                inv = false;
+            }
+            else
+            {
+                inv = true;
+            }
+        }
     }
 
 }

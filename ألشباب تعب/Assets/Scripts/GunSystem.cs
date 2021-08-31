@@ -26,7 +26,7 @@ public class GunSystem : MonoBehaviour
     bool isReloading;
     bool ableToShoot;
 
-
+    public InventoryScript inventory;
 
     public void Start()
     {
@@ -47,26 +47,29 @@ public class GunSystem : MonoBehaviour
 
     public void MyInput()
     {
-        if(ammo <1 && !isReloading)
+        if (!inventory.inv)
         {
-            Reload();
-        }
-
-        if (isAutomatic)
-        {
-            if (Input.GetMouseButton(0))
+            if (ammo < 1 && !isReloading)
             {
-                Shoot();
-            }
-        }
-        else
-        {
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                Shoot();
+                Reload();
             }
 
+            if (isAutomatic)
+            {
+                if (Input.GetMouseButton(0))
+                {
+                    Shoot();
+                }
+            }
+            else
+            {
+
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Shoot();
+                }
+
+            }
         }
     }
     public void Shoot()
