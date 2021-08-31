@@ -15,13 +15,22 @@ public class EnemyScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
-
+    private void Start()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            Debug.Log("انا خرمان");
+        }
+    }
     // Update is called once per frame
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        
 
-
+        
+        
         if(collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
