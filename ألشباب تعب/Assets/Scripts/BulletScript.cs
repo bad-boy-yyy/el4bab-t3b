@@ -18,11 +18,10 @@ public class BulletScript : MonoBehaviour
     {
         GetComponent<Rigidbody2D>().velocity = transform.up * bulletSpeed * Time.deltaTime; 
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    public void CollidedWithSomething()
+    { 
         GameObject impact = Instantiate(bulletImpact, transform.position, Quaternion.identity);
         Destroy(impact, 1f);
-        Debug.Log("sad");
         Destroy(gameObject);
     }
 }

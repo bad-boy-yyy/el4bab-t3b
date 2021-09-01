@@ -5,22 +5,36 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    
+    int currentTime; 
     private int survivalHours;
     private int survivalDays;
     public Text survivalTimeTxt;
+    public Text currentTimeTxt;
 
     void Start()
     {
+        currentTime = 1;
+        survivalHours = 1;
         InvokeRepeating("IncreaseTime", 30, 30);
     }
 
     void Update()
     {
         SurvivalTxtFunction();
+        CurrentTimeTxtFunction();
     }
-
+        
     void IncreaseTime()
     {
+        if (currentTime < 24)
+        {
+            currentTime++;
+        } else
+        {
+            currentTime = 1;
+        }
+
         if (survivalHours < 24)
         {
             survivalHours++;
@@ -46,5 +60,17 @@ public class GameManager : MonoBehaviour
         {
             survivalTimeTxt.text = survivalDays.ToString() + " Days, " + survivalHours.ToString() + " hours";
         }
+    }
+    void CurrentTimeTxtFunction()
+    {
+        if (currentTime <= 12)
+        {
+            currentTimeTxt.text = currentTime.ToString() + " AM";
+        }
+        else if (currentTime > 12)
+        {
+            currentTimeTxt.text = ((currentTime - 12).ToString()) + " PM";
+        }
+
     }
 }
