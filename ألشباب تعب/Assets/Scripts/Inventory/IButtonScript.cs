@@ -86,25 +86,6 @@ public class IButtonScript : MonoBehaviour
 
                     lastHolder = Holders[i].gameObject;
                 }
-                else if (Holders[i].GetComponent<HolderScript>().holding && Holders[i].GetComponent<HolderScript>().isMain)
-                {
-                    //Holders[i].GetComponent<HolderScript>().children.SetParent(lastHolder.transform);
-
-                    Holders[i].GetComponentInChildren<RectTransform>().localPosition = Vector2.zero;
-
-                    Holders[i].GetComponentInChildren<IButtonScript>().lastHolder = lastHolder;
-
-                    GetComponentInParent<HolderScript>().holding = true;
-
-                    transform.SetParent(Holders[i].transform);
-
-                    GetComponent<RectTransform>().localPosition = Vector2.zero;
-
-                    Holders[i].GetComponent<HolderScript>().holding = true;
-
-                    lastHolder = Holders[i].gameObject;
-
-                }
             }
         }
     }
