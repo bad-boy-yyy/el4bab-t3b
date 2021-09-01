@@ -3684,6 +3684,7 @@ MonoBehaviour:
   - {fileID: 1269269373}
   - {fileID: 1537866345}
   - {fileID: 1177416155}
+  - {fileID: 764075551}
   IWeapons:
   - {fileID: 994431048}
   - {fileID: 178852626}
@@ -19438,7 +19439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &469136710
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30243,7 +30244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615349986}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.13, y: 1.47, z: -0.2265625}
+  m_LocalPosition: {x: -0.13, y: 2.81, z: -0.2265625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1840481751}
