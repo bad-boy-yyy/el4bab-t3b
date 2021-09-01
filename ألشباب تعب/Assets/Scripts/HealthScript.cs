@@ -53,6 +53,11 @@ public class HealthScript : MonoBehaviour
         healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, currentHealth / startingHealth, healthSmoothTime * Time.deltaTime);
         HungerImage.fillAmount = Mathf.Lerp(HungerImage.fillAmount, currentHunger / startingHunger, hungerSmoothness * Time.deltaTime);
 
+        if (currentHunger > startingHunger / 4)
+        {
+            currentHealth = Mathf.Lerp(currentHealth, startingHealth, 0.01f * Time.deltaTime);
+        }
+
         if(currentHealth < 1)
         {
             //Die
@@ -70,8 +75,7 @@ public class HealthScript : MonoBehaviour
         }
         
         if (currentHunger > 0)
-        {
-            
+        {  
            if(!isHungryDecreasing)
             {
                 StartCoroutine(nameof(HungerDecrease));
@@ -89,14 +93,14 @@ public class HealthScript : MonoBehaviour
     IEnumerator HungerDecrease()
     {
         isHungryDecreasing = true;
-        currentHunger -= 1f;
+        currentHunger -= 2f;
         yield return new WaitForSeconds(1.5f);
         isHungryDecreasing = false;
         
     }
     public void TakeDamage(float dmg)
     {
-         CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);
+        CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);
         currentHealth -= dmg;
     }
     IEnumerator HungerTakeDamage()
@@ -108,7 +112,6 @@ public class HealthScript : MonoBehaviour
     }
     void Die()
     {
-        int currentScene = SceneManager.sceneCount;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

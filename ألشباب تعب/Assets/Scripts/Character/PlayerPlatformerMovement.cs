@@ -9,7 +9,7 @@ public class PlayerPlatformerMovement : MonoBehaviour
     float horizontal;                                // Horizontal float for the Horizontal Axis.
     float vertical;                                  // The same thing in the upper comment but im too lazy to write it again so pls forgive me, actually its useless because its a platformer controller script but im so fucking lazy to remove this refrence.
 
-    [SerializeField] float runSpeed;
+    public float runSpeed;
 
     bool jump;
 

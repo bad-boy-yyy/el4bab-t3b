@@ -15,9 +15,9 @@ public class ShopScript : MonoBehaviour
 
     public float shopDistance;
 
-    public int Money;
-    public int cost;
-    private int remaining;
+    public float Money;
+    public float cost;
+    private float remaining;
 
     public Text moneyTxt;
     public Text costTxt;
@@ -30,6 +30,8 @@ public class ShopScript : MonoBehaviour
 
     public int holderIndex = -1;
     public int weaponIndex = 0;
+
+    private GameObject[] Weapons; 
 
     void Start()
     {
@@ -284,21 +286,29 @@ public class ShopScript : MonoBehaviour
     private void Drink()
     {
         Debug.Log("Drink");
+
+        GameObject.Find("Player").GetComponent<HealthScript>().currentHunger +=
+        (GameObject.Find("Player").GetComponent<HealthScript>().startingHunger
+        - GameObject.Find("Player").GetComponent<HealthScript>().currentHunger) / 2;
     }
 
     private void Eat()
     {
         Debug.Log("Eat");
+
+        GameObject.Find("Player").GetComponent<HealthScript>().currentHunger = 100f;
     }
 
     private void IncreaseSpeed()
     {
-        Debug.Log("IncreaseSpeed");
+        GameObject.Find("Player").GetComponent<PlayerPlatformerMovement>().runSpeed *= 1.2f;
     }
 
     private void IncreaseHealth()
     {
         Debug.Log("IncreaseHealth");
+
+        GameObject.Find("Player").GetComponent<HealthScript>().currentHealth = 100f;
     }
 
     private void Armor()
@@ -314,11 +324,21 @@ public class ShopScript : MonoBehaviour
     private void DamageIncrease()
     {
         Debug.Log("DamageIncrease");
+
+        for (int i = 0; i < Weapons.Length; i++)
+        {
+            Weapons[i].GetComponent<GunSystem>().damage *= 1.2f;
+        }
     }
 
     private void FireRate()
     {
         Debug.Log("FireRate");
+
+        for (int i = 0; i < Weapons.Length; i++)
+        {
+            Weapons[i].GetComponent<GunSystem>().firerate *= 0.75f;
+        }
     }
 
     private void Bullet50()
@@ -338,7 +358,10 @@ public class ShopScript : MonoBehaviour
 
     private void ReloadTime()
     {
-        Debug.Log("ReloadTime");
+        for (int i = 0; i < Weapons.Length; i++)
+        {
+            Weapons[i].GetComponent<GunSystem>().reloadTime *= 0.8f;
+        }
     }
     #endregion
 

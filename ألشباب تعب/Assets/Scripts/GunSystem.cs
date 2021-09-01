@@ -11,7 +11,7 @@ public class GunSystem : MonoBehaviour
     public Image GunImage;
     public Transform gunBarrel;
     public float firerate,bulletSpeed, spread, recoil, ammo, maxAmmo, reloadTime,shakeRoughness,shakeMagnitude;
-    public int damage;
+    public float damage;
     public GameObject bulletProjectile;
     public bool isAutomatic;
 

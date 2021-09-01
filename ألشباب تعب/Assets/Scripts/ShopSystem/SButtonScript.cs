@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SButtonScript : MonoBehaviour
 {
-    public int price;
+    public float price;
 
     [HideInInspector]public bool checkedBool;
 
@@ -31,7 +31,7 @@ public class SButtonScript : MonoBehaviour
     {
         if (!sold)
         {
-            int moneyDiff = shopScript.Money - shopScript.cost;
+            float moneyDiff = shopScript.Money - shopScript.cost;
 
             if (checkedBool)
             {
@@ -88,6 +88,8 @@ public class SButtonScript : MonoBehaviour
             if (!justOnce)
             {
                 shopScript.MainVoid(functionName);
+
+                price *= 1.2f;
             }
             else
             {
