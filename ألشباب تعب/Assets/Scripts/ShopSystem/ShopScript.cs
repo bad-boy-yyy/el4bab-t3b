@@ -31,7 +31,7 @@ public class ShopScript : MonoBehaviour
     public int holderIndex = -1;
     public int weaponIndex = 0;
 
-    private GameObject[] Weapons; 
+    public GameObject[] Weapons; 
 
     void Start()
     {
@@ -40,13 +40,11 @@ public class ShopScript : MonoBehaviour
 
     void Update()
     {
-       
-    
         remaining = Money - cost;
 
-        moneyTxt.text = "Money : " + Money.ToString();
-        costTxt.text = "Cost : " + cost.ToString();
-        remainingTxt.text = "Remaining : " + remaining.ToString();
+        moneyTxt.text = "Money : " + Money.ToString("N0");
+        costTxt.text = "Cost : " + cost.ToString("N0");
+        remainingTxt.text = "Remaining : " + remaining.ToString("N0");
 
         CanOpenFunction();
     }
@@ -316,6 +314,7 @@ public class ShopScript : MonoBehaviour
     private void Armor()
     {
         Debug.Log("Armor");
+        GameObject.Find("Player").GetComponent<HealthScript>().ActivateArmor();
     }
 
     private void Flying()
