@@ -17,7 +17,7 @@ public class InventoryScript : MonoBehaviour
             inventoryPanel.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (inv)
             {
@@ -27,18 +27,6 @@ public class InventoryScript : MonoBehaviour
             {
                 inv = true;
             }
-        }
-    }
-
-    public void InventoryButton()
-    {
-        if (inv)
-        {
-            inv = false;
-        }
-        else
-        {
-            inv = true;
         }
     }
 
