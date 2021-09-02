@@ -40,6 +40,8 @@ public class ShopScript : MonoBehaviour
 
     void Update()
     {
+       
+    
         remaining = Money - cost;
 
         moneyTxt.text = "Money : " + Money.ToString();
@@ -71,8 +73,8 @@ public class ShopScript : MonoBehaviour
 
         if (canOpen)
         {
-            //If key "E" is pressed open the shop..
-            if (Input.GetKeyDown(KeyCode.E))
+            //If key "F" is pressed open the shop..
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 //pressText.SetActive(false);
 

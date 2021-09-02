@@ -11,22 +11,32 @@ public class GameManager : MonoBehaviour
     private int survivalDays;
     public Text survivalTimeTxt;
     public Text currentTimeTxt;
+    public SpriteRenderer Sky;
+    public Color m_SkyColor;
+   
 
     void Start()
     {
         currentTime = 1;
         survivalHours = 1;
-        InvokeRepeating("IncreaseTime", 30, 30);
+        InvokeRepeating("IncreaseTime", 10, 10);
+        
     }
 
     void Update()
     {
+        
+
+       
         SurvivalTxtFunction();
         CurrentTimeTxtFunction();
     }
         
     void IncreaseTime()
     {
+       
+           
+        
         if (currentTime < 24)
         {
             currentTime++;
@@ -73,4 +83,8 @@ public class GameManager : MonoBehaviour
         }
 
     }
+    
+
+   
+
 }

@@ -17,7 +17,7 @@ public class InventoryScript : MonoBehaviour
             inventoryPanel.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             if (inv)
             {
