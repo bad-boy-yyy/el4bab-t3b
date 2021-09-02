@@ -30,6 +30,15 @@ public class HealthScript : MonoBehaviour
 
     public static HealthScript Instance;
 
+    public float startingArmor;
+    public float armorSmoothness;
+
+    [HideInInspector]public float currentArmor;
+
+    public GameObject armorObj;
+    public Image armorImage;
+    private bool isAromr;
+
 
     private void Awake()
     {
@@ -52,6 +61,13 @@ public class HealthScript : MonoBehaviour
         //show the health on the health indecator..
         healthImage.fillAmount = Mathf.Lerp(healthImage.fillAmount, currentHealth / startingHealth, healthSmoothTime * Time.deltaTime);
         HungerImage.fillAmount = Mathf.Lerp(HungerImage.fillAmount, currentHunger / startingHunger, hungerSmoothness * Time.deltaTime);
+        if (isAromr) { armorImage.fillAmount = Mathf.Lerp(armorImage.fillAmount, currentArmor / startingArmor, armorSmoothness * Time.deltaTime); }
+
+        if (currentArmor <= 0)
+        {
+            isAromr = false;
+            armorObj.SetActive(false);
+        }
 
         if (currentHunger > startingHunger / 4)
         {
@@ -100,8 +116,23 @@ public class HealthScript : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
-        CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);
-        currentHealth -= dmg;
+        if (isAromr)
+        {
+            CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);
+            currentArmor -= dmg;
+        }
+        else
+        {
+            CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);
+            currentHealth -= dmg;
+        }
+    }
+
+    public void ActivateArmor()
+    {
+        isAromr = true;
+        currentArmor = startingArmor;
+        armorObj.SetActive(true);
     }
     IEnumerator HungerTakeDamage()
     {

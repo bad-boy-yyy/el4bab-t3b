@@ -8,7 +8,7 @@ public class GunSystem : MonoBehaviour
 {
     [Header("Gun Variables")]
     public string GunName;
-    public Image GunImage;
+    public Sprite GunImage;
     public Transform gunBarrel;
     public float firerate,bulletSpeed, spread, recoil, ammo, maxAmmo, reloadTime,shakeRoughness,shakeMagnitude;
     public float damage;

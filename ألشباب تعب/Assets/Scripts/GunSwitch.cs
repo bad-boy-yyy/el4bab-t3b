@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunSwitch : MonoBehaviour
 {
@@ -18,8 +19,14 @@ public class GunSwitch : MonoBehaviour
     public GameObject lastWO1;
     public GameObject lastWO2;
 
+    private bool firstW;
+    private Sprite gunSprite;
+    public Button gunSwitchButton;
+
     void Update()
     {
+        gunSwitchButton.GetComponent<Image>().sprite = gunSprite;
+
         if (isHolding1)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -40,6 +47,7 @@ public class GunSwitch : MonoBehaviour
             if (Holder2.GetComponent<HolderScript>().children != null)
             {
                 Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].SetActive(true);
+                gunSprite = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
             }
         }
 
@@ -62,6 +70,7 @@ public class GunSwitch : MonoBehaviour
             if (Holder1.GetComponent<HolderScript>().children != null)
             {
                 Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].SetActive(true);
+                gunSprite = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
             }
         }
     }
@@ -74,6 +83,9 @@ public class GunSwitch : MonoBehaviour
         }
 
         Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].SetActive(true);
+        gunSprite = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
+
+        firstW = true;
     }
 
     void GetSecondWeapon()
@@ -84,5 +96,20 @@ public class GunSwitch : MonoBehaviour
         }
 
         Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].SetActive(true);
+        gunSprite = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
+
+        firstW = false;
+    }
+
+    public void GunSwitchButton()
+    {
+        if(firstW)
+        {
+            GetSecondWeapon();
+        }
+        else
+        {
+            GetFirstWeapon();
+        }
     }
 }
