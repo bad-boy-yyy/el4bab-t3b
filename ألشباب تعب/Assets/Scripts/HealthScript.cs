@@ -13,6 +13,7 @@ public class HealthScript : MonoBehaviour
 
     [HideInInspector]public float currentHealth;
 
+    [SerializeField] Animator TakeDamagePPVAnimator;
 
     public float startingHunger;
     public float hungerSmoothness;
@@ -116,6 +117,7 @@ public class HealthScript : MonoBehaviour
     }
     public void TakeDamage(float dmg)
     {
+        TakeDamagePPVAnimator.CrossFade("TD_Start", 0.001f);
         if (isAromr)
         {
             CameraShaker.Instance.ShakeOnce(1f, 2, .1f, 1);

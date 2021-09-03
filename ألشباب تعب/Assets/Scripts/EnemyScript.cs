@@ -1,15 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using EZCameraShake;
 
 public class EnemyScript : MonoBehaviour
 {
     [SerializeField] Transform player;
     public float damage;
     [SerializeField] float health;
+    [SerializeField] [Range(3,10)]float CoinScatterSpeed;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask Enemy;
+
+    [SerializeField] Animator KillPPVAnimator;
+    
+
+    public GameObject Coin;
     
     public CharacterController2D controller;
 
@@ -150,6 +156,11 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             health -= collision.GetComponent<BulletScript>().bulletDamage;
+            if(health <= 0)
+            {
+                CameraShaker.Instance.ShakeOnce(2, 3, .1f, 1f);
+                KillPPVAnimator.CrossFade("Start", 0.001f);
+            }
             collision.GetComponent<BulletScript>().CollidedWithSomething();
         }
     }
@@ -159,13 +170,27 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" && !m_TookDamage)
             {
-                Destroy(gameObject);
+
+            
+            Destroy(gameObject);
                 HealthScript.Instance.TakeDamage(damage);
                 m_TookDamage = true;
              }
     }
+    private void OnDestroy()
+    {
+        for (int i = 0; i < Random.Range(1,5); i++  )
+        {
+            InstantiateCoins();
+        }
+    }
+    protected void InstantiateCoins()
+    {
 
-        
+        GameObject coin = Instantiate(Coin, transform.position, Quaternion.identity);
+        coin.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(CoinScatterSpeed - 1, CoinScatterSpeed + 1), ForceMode2D.Impulse);
+    }
+
 
 }
    

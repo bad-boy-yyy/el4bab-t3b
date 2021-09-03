@@ -47,4 +47,13 @@ public class PlayerPlatformerMovement : MonoBehaviour
         controller.Move(horizontal * Time.fixedDeltaTime,false,jump);
         jump = false;
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Coin")
+        {
+
+            ShopScript.Instance.Money += Random.Range(20, 100);
+            Destroy(collision.gameObject);
+        }
+    }
 }

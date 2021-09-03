@@ -35,7 +35,7 @@ public class GunSystem : MonoBehaviour
 
     public void Update()
     {
-
+        transform.SetAsLastSibling();
         UIControl();
         MyInput();
     }
@@ -47,7 +47,7 @@ public class GunSystem : MonoBehaviour
 
     public void MyInput()
     {
-        if (!inventory.inv)
+        if (!inventory.inv && !ShopScript.Instance.isShopOpened)
         {
             if (ammo < 1 && !isReloading)
             {

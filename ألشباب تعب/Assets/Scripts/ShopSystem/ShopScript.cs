@@ -10,6 +10,8 @@ public class ShopScript : MonoBehaviour
     public GameObject pressText;
 
     private bool canOpen;
+    [HideInInspector]public bool isShopOpened;
+    
 
     public GameObject shopPanel;
 
@@ -31,7 +33,17 @@ public class ShopScript : MonoBehaviour
     public int holderIndex = -1;
     public int weaponIndex = 0;
 
-    public GameObject[] Weapons; 
+    public GameObject[] Weapons;
+
+    public static ShopScript Instance;
+
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+    }
 
     void Start()
     {
@@ -42,15 +54,18 @@ public class ShopScript : MonoBehaviour
     {
         remaining = Money - cost;
 
-        moneyTxt.text = "Money : " + Money.ToString("N0");
-        costTxt.text = "Cost : " + cost.ToString("N0");
-        remainingTxt.text = "Remaining : " + remaining.ToString("N0");
+        moneyTxt.text = "<color=white>" + Money.ToString("N0") + "</color> $";
+        costTxt.text = "Total : <color=white>" + cost.ToString("N0") + "</color> $";
+        remainingTxt.text = "Remaining : <color=white>" + remaining.ToString("N0") + "</color> $";
 
         CanOpenFunction();
     }
 
     private void CanOpenFunction()
     {
+        isShopOpened = shopPanel.activeInHierarchy;
+
+
         //Checking if the player is near to the shop or not..
 
         if (Vector2.Distance(transform.position, player.transform.position) <= shopDistance)
@@ -64,10 +79,10 @@ public class ShopScript : MonoBehaviour
             canOpen = false;
             if (shopPanel.activeSelf)
             {
+
                 shopPanel.SetActive(false);
             }
         }
-
 
         if (canOpen)
         {
@@ -192,30 +207,30 @@ public class ShopScript : MonoBehaviour
         WeaponBuyFunction(1);
     }
 
-    private void GLOCK()
+    private void M1911()
     {
-        Debug.Log("GLOCK");
+        Debug.Log("M1911");
 
         WeaponBuyFunction(2);
     }
 
-    private void AWP()
+    private void Thombson()
     {
-        Debug.Log("AWP");
+        Debug.Log("Thombson");
 
         WeaponBuyFunction(3);
     }
 
-    private void K90()
+    private void MP40()
     {
-        Debug.Log("K90");
+        Debug.Log("MP40");
 
         WeaponBuyFunction(4);
     }
 
-    private void VECTOR()
+    private void UZI()
     {
-        Debug.Log("VECTOR");
+        Debug.Log("UZI");
 
         WeaponBuyFunction(5);
     }
@@ -235,9 +250,9 @@ public class ShopScript : MonoBehaviour
         WeaponBuyFunction(7);
     }
 
-    private void AUTOPISTOL()
+    private void SCAR()
     {
-        Debug.Log("AUTOPISTOL");
+        Debug.Log("SCAR");
 
         WeaponBuyFunction(8);
     }
@@ -264,11 +279,11 @@ public class ShopScript : MonoBehaviour
             }
             if (IHolders[holderIndex].GetComponent<HolderScript>().holding)
             {
-                if (holderIndex <= 7)
+                if (holderIndex <= 6)
                 {
                     holderIndex++;
                 }
-                else if (holderIndex >= 8)
+                else if (holderIndex >= 7)
                 {
                     holderIndex = 0;
 

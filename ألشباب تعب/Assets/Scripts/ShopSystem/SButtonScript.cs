@@ -29,6 +29,8 @@ public class SButtonScript : MonoBehaviour
 
     private void Update()
     {
+        Text priceText = GetComponentInChildren<Text>();
+        priceText.text = price.ToString() + "$";
         if (!sold)
         {
             float moneyDiff = shopScript.Money - shopScript.cost;
