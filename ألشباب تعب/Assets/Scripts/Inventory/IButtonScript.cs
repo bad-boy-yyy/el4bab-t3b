@@ -33,7 +33,6 @@ public class IButtonScript : MonoBehaviour
 
     void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y, -8);
         mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         if (isHolding)
