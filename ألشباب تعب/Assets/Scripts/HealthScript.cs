@@ -110,7 +110,7 @@ public class HealthScript : MonoBehaviour
     IEnumerator HungerDecrease()
     {
         isHungryDecreasing = true;
-        currentHunger -= 2f;
+        currentHunger -= .7f;
         yield return new WaitForSeconds(1.5f);
         isHungryDecreasing = false;
         

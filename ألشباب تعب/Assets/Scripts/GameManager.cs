@@ -43,11 +43,23 @@ public class GameManager : MonoBehaviour
         wantedSky = SkySprites[currentSkyIndex + 1];
         SkyFunction();
 
+        InvokeRepeating("IncreaseRotationOfSun", 0.5f, 0.5f);
         InvokeRepeating("IncreaseTime", hourRate, hourRate);
     }
 
     void Update()
     {
+
+        Debug.Log(Time.timeScale + " Time");
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            Time.timeScale += 0.5f;
+        }
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            Time.timeScale -= 0.5f;
+        }
+
         if (currentSkyIndex > 23)
         {
             currentSkyIndex = 0;
@@ -85,6 +97,10 @@ public class GameManager : MonoBehaviour
 
         //StartCoroutine(SunCoroutine());
         SkyFunction();
+    }
+    protected void IncreaseRotationOfSun()
+    {
+        sun.transform.Rotate(new Vector3(1, 0, 0),0.1875f);
     }
 
     void SurvivalTxtFunction()
@@ -125,7 +141,8 @@ public class GameManager : MonoBehaviour
 
     void DayNight()
     {
-        sun.transform.Rotate(new Vector2(1, 0), 0.19f);
+       // sun.transform.Rotate(new Vector2(1 , 0), 0.19f);
+        
     }
 
     IEnumerator SunCoroutine()
@@ -135,8 +152,10 @@ public class GameManager : MonoBehaviour
 
         while (Time.time < startTime + duration)
         {
+            float r = sun.transform.rotation.x;
             float t = (Time.time - startTime) / duration;
-            transform.rotation = Quaternion.Euler(Mathf.Lerp(transform.rotation.x, transform.rotation.x + 15, t), transform.rotation.y, 0);
+            
+                //Mathf.Lerp(sun.transform.rotation.x, sun.transform.rotation.x + 15, t), sun.transform.rotation.y, 0);
             yield return null;
         }
     }
@@ -151,6 +170,7 @@ public class GameManager : MonoBehaviour
         secondSky.sprite = wantedSky;
 
         StartCoroutine(SkyCoroutine());
+        StartCoroutine(SunCoroutine());
     }
 
     IEnumerator SkyCoroutine()
@@ -160,6 +180,7 @@ public class GameManager : MonoBehaviour
 
         while (Time.time < startTime + duration)
         {
+
             float t = (Time.time - startTime) / duration;
             firstSky.color = new Color(firstSky.color.r, firstSky.color.g, firstSky.color.b, Mathf.Lerp(1, 0, t));
             yield return null;

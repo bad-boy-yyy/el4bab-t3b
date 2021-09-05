@@ -156,14 +156,18 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag == "Bullet")
         {
             health -= collision.GetComponent<BulletScript>().bulletDamage;
+            GetComponent<SpriteRenderer>().color = Color.white;
+            Invoke("ResetColor", 0.1f);
             if(health <= 0)
             {
                 CameraShaker.Instance.ShakeOnce(2, 3, .1f, 1f);
                 KillPPVAnimator.CrossFade("Start", 0.001f);
             }
             collision.GetComponent<BulletScript>().CollidedWithSomething();
+
         }
     }
+   
     
             bool m_TookDamage;
     private void OnCollisionEnter2D(Collision2D collision)
@@ -189,6 +193,10 @@ public class EnemyScript : MonoBehaviour
 
         GameObject coin = Instantiate(Coin, transform.position, Quaternion.identity);
         coin.GetComponent<Rigidbody2D>().AddForce(Vector2.up * Random.Range(CoinScatterSpeed - 1, CoinScatterSpeed + 1), ForceMode2D.Impulse);
+    }
+    void ResetColor()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
 
