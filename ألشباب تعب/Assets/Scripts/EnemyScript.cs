@@ -34,8 +34,8 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         
-        Debug.Log(m_CanMove);
-        Debug.DrawRay(transform.position + new Vector3(0.5f, -0.4f),Vector3.right);
+        
+       
         MyInput();
         if (health <= 0)
         {

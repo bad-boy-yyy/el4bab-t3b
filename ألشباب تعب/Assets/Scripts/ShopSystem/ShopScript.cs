@@ -194,14 +194,13 @@ public class ShopScript : MonoBehaviour
     #region Weapons
     private void AK()
     {
-        Debug.Log("AK");
-
+        
         WeaponBuyFunction(0);
     }
 
     private void DEAGLE()
     {
-        Debug.Log("DEAGLE");
+      
 
 
         WeaponBuyFunction(1);
@@ -209,35 +208,34 @@ public class ShopScript : MonoBehaviour
 
     private void M1911()
     {
-        Debug.Log("M1911");
+       
 
         WeaponBuyFunction(2);
     }
 
     private void Thombson()
     {
-        Debug.Log("Thombson");
+       
 
         WeaponBuyFunction(3);
     }
 
     private void MP40()
     {
-        Debug.Log("MP40");
-
+       
         WeaponBuyFunction(4);
     }
 
     private void UZI()
     {
-        Debug.Log("UZI");
+       
 
         WeaponBuyFunction(5);
     }
 
     private void HUNTINGRIFLE()
     {
-        Debug.Log("HUNTINGRIFLE");
+       
 
         WeaponBuyFunction(6);
     }
@@ -245,15 +243,13 @@ public class ShopScript : MonoBehaviour
 
     private void REVOLVER()
     {
-        Debug.Log("REVOLVER");
-
+     
         WeaponBuyFunction(7);
     }
 
     private void SCAR()
     {
-        Debug.Log("SCAR");
-
+      
         WeaponBuyFunction(8);
     }
 
@@ -359,17 +355,17 @@ public class ShopScript : MonoBehaviour
 
     private void Bullet50()
     {
-        Debug.Log("Bullet50");
+        
     }
 
     private void Bullet20()
     {
-        Debug.Log("Bullet20");
+        
     }
 
     private void Bullet10()
     {
-        Debug.Log("Bullet10");
+        
     }
 
     private void ReloadTime()
