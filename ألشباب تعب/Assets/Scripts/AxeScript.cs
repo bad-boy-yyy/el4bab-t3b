@@ -13,6 +13,7 @@ public class AxeScript : MonoBehaviour
     private void Update()
     {
 
+
         //Check if i hitting wood;
 
         if (Input.GetKey(KeyCode.C))
