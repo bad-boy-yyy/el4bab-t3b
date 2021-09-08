@@ -79,7 +79,6 @@ public class ShopScript : MonoBehaviour
             canOpen = false;
             if (shopPanel.activeSelf)
             {
-
                 shopPanel.SetActive(false);
             }
         }
@@ -87,7 +86,7 @@ public class ShopScript : MonoBehaviour
         if (canOpen)
         {
             //If key "F" is pressed open the shop..
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 //pressText.SetActive(false);
 

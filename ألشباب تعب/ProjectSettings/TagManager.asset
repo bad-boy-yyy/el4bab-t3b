@@ -8,6 +8,10 @@ TagManager:
   - Bullet
   - Enemy
   - Coin
+  - Tree
+  - Wood
+  - Rock
+  - Steal
   layers:
   - Default
   - TransparentFX

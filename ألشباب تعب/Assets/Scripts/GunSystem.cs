@@ -27,6 +27,7 @@ public class GunSystem : MonoBehaviour
     bool ableToShoot;
 
     public InventoryScript inventory;
+    public CraftingManager craftingManager;
 
     public void Start()
     {
@@ -47,7 +48,7 @@ public class GunSystem : MonoBehaviour
 
     public void MyInput()
     {
-        if (!inventory.inv && !ShopScript.Instance.isShopOpened)
+        if (!inventory.inv && !ShopScript.Instance.isShopOpened && !craftingManager.isCrafting)
         {
             if (ammo < 1 && !isReloading)
             {

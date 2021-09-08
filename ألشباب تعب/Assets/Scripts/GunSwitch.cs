@@ -23,6 +23,8 @@ public class GunSwitch : MonoBehaviour
     private Sprite gunSprite;
     public Button gunSwitchButton;
 
+    public CraftingManager craftingManager;
+
     void Update()
     {
         gunSwitchButton.GetComponent<Image>().sprite = gunSprite;
@@ -44,10 +46,11 @@ public class GunSwitch : MonoBehaviour
                 lastWO1 = null;
             }
 
-            if (Holder2.GetComponent<HolderScript>().children != null)
+            if (Holder2.GetComponent<HolderScript>().children != null && !craftingManager.isCrafting)
             {
                 Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].SetActive(true);
                 gunSprite = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
+                craftingManager.currentWeapon = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex];
             }
         }
 
@@ -67,16 +70,20 @@ public class GunSwitch : MonoBehaviour
                 lastW2 = -1;
                 lastWO2 = null;
             }
-            if (Holder1.GetComponent<HolderScript>().children != null)
+            if (Holder1.GetComponent<HolderScript>().children != null && !craftingManager.isCrafting)
             {
                 Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].SetActive(true);
                 gunSprite = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
+                craftingManager.currentWeapon = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex];
             }
         }
     }
 
+
     void GetFirstWeapon()
     {
+        if (craftingManager.isCrafting) return;
+
         for (int i = 0; i < Weapons.Length; i++)
         {
             Weapons[i].SetActive(false);
@@ -86,10 +93,14 @@ public class GunSwitch : MonoBehaviour
         gunSprite = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
 
         firstW = true;
+
+        craftingManager.currentWeapon = Weapons[Holder1.GetComponent<HolderScript>().weaponIndex];
     }
 
     void GetSecondWeapon()
     {
+        if (craftingManager.isCrafting) return;
+
         for (int i = 0; i < Weapons.Length; i++)
         {
             Weapons[i].SetActive(false);
@@ -99,6 +110,8 @@ public class GunSwitch : MonoBehaviour
         gunSprite = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex].GetComponent<GunSystem>().GunImage;
 
         firstW = false;
+
+        craftingManager.currentWeapon = Weapons[Holder2.GetComponent<HolderScript>().weaponIndex];
     }
 
     public void GunSwitchButton()
@@ -113,3 +126,4 @@ public class GunSwitch : MonoBehaviour
         }
     }
 }
+
