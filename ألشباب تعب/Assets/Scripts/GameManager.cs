@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject[] Zombies;
     public Transform[] SpawnPoints;
     private float zombiesRate;
+    private float lightRot;
+        float newRot;
 
     public GameObject sun;
     public GameObject moon;
@@ -36,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        newRot = -323.211f;
+
         currentTime = 6;
         survivalHours = 1;
 
@@ -43,13 +47,15 @@ public class GameManager : MonoBehaviour
         wantedSky = SkySprites[currentSkyIndex + 1];
         SkyFunction();
 
-        InvokeRepeating("IncreaseRotationOfSun", 0.5f, 0.5f);
+        //InvokeRepeating("IncreaseRotationOfSun", 0.5f, 0.5f);
         InvokeRepeating("IncreaseTime", hourRate, hourRate);
     }
 
     void Update()
     {
-
+        Debug.Log(newRot);
+        newRot = Mathf.LerpAngle(newRot, lightRot, 1 * Time.deltaTime);
+       // sun.transform.rotation = Vector3.(newRot, 0, 0,1);
         Debug.Log(Time.timeScale + " Time");
         if(Input.GetKeyDown(KeyCode.I))
         {
@@ -188,4 +194,58 @@ public class GameManager : MonoBehaviour
 
         
     }
+    void ChangeTime()
+    {
+        if(currentTime == 1)
+        {
+            lightRot = -270f;
+
+        }
+        if(currentTime == 2)
+        {
+            lightRot = -270f;
+
+        }
+        if(currentTime == 3)
+
+        {
+            lightRot = -273.119f;
+        }
+        if(currentTime == 4)
+        {
+            lightRot = -278.354f;
+        }
+        if(currentTime == 5)
+        {
+            lightRot = -299.955f;
+        }
+        if(currentTime == 6)
+        {
+            lightRot = -323.211f;
+        }
+        if(currentTime == 7)
+        {
+            lightRot = -325.166f;
+        }
+        if(currentTime == 8)
+        {
+            lightRot = -325.166f;
+        }
+        if(currentTime == 9)
+        {
+            lightRot = -325.166f;
+        }
+        if(currentTime == 10)
+        {
+            lightRot = -354.697f;
+        }
+        if(currentTime == 11)
+        {
+            lightRot = -357.195f;
+        }
+        if(currentTime == 12)
+        {
+            lightRot = -359.95f;
+        }
+                }
 }
