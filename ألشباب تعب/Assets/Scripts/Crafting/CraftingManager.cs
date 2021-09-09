@@ -104,9 +104,11 @@ public class CraftingManager : MonoBehaviour
 
     private void TreeDestroy()
     {
+        Vector3 Iposition = new Vector2(currentItem.transform.position.x, currentItem.transform.position.y + 0.8f);
+
         for (int i = 0; i < currentItem.GetComponent<ItemCrafting>().ItemsNum; i++)
         {
-            GameObject m = Instantiate(WoodPrefab, currentItem.transform.position, Quaternion.identity) as GameObject;
+            GameObject m = Instantiate(WoodPrefab, Iposition, Quaternion.identity) as GameObject;
             m.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-0.3f, 0.3f), Random.Range(1, 2)) * 1000 * Time.deltaTime, ForceMode2D.Impulse);
         }
 
@@ -116,9 +118,11 @@ public class CraftingManager : MonoBehaviour
 
     private void RockDestroy()
     {
+        Vector3 Iposition = new Vector2(currentItem.transform.position.x, currentItem.transform.position.y + 0.8f);
+
         for (int i = 0; i < currentItem.GetComponent<ItemCrafting>().ItemsNum; i++)
         {
-            GameObject m = Instantiate(RockPrefab, currentItem.transform.position, Quaternion.identity) as GameObject;
+            GameObject m = Instantiate(RockPrefab, Iposition, Quaternion.identity) as GameObject;
             m.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-0.3f, 0.3f), Random.Range(1, 2)) * 1000 * Time.deltaTime, ForceMode2D.Impulse);
         }
 
@@ -128,9 +132,11 @@ public class CraftingManager : MonoBehaviour
 
     private void SteelDestroy()
     {
+        Vector3 Iposition = new Vector2(currentItem.transform.position.x, currentItem.transform.position.y + 0.8f);
+
         for (int i = 0; i < currentItem.GetComponent<ItemCrafting>().ItemsNum; i++)
         {
-            GameObject m = Instantiate(SteelPrefab, currentItem.transform.position, Quaternion.identity) as GameObject;
+            GameObject m = Instantiate(SteelPrefab, Iposition, Quaternion.identity) as GameObject;
             m.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-0.3f, 0.3f), Random.Range(1, 2)) * 1000 * Time.deltaTime, ForceMode2D.Impulse);
         }
 
